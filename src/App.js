@@ -14,14 +14,14 @@ class App extends React.Component {
       cardAttr1: '',
       cardAttr2: '',
       cardAttr3: '',
-      cardAttr4: '',
+      /* cardAttr4: '',
       cardAttr5: '',
-      cardAttr6: '',
+      cardAttr6: '', */
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
       hasTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
     };
   }
 
@@ -31,7 +31,51 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
+    }, () => this.validateEntries());
+  }
+
+  validateEntries = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      /* cardAttr4,
+      cardAttr5,
+      cardAttr6, */
+      cardImage,
+      cardRare,
+    } = this.state;
+
+    const hasValidTextInputs = [
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+    ].every(({ length }) => length > 0);
+
+    const MIN_VALUE = 0;
+    const MAX_VALUE = 90;
+    const MAX_TOTAL = 210;
+
+    const hasValidAttributes = [
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      /* cardAttr4,
+      cardAttr5,
+      cardAttr6, */
+    ].every((value) => {
+      const valueToInt = parseInt(value, 10);
+      return (valueToInt >= MIN_VALUE && valueToInt <= MAX_VALUE);
     });
+
+    const hasValidTotal = parseInt(cardAttr1, 10)
+      + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10) <= MAX_TOTAL;
+
+    this.setState({ isSaveButtonDisabled: !(hasValidTextInputs
+      && hasValidAttributes && hasValidTotal) });
   }
 
   onSaveButtonClick = () => { console.log('Clique do botão capturado'); }
@@ -43,9 +87,9 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      cardAttr4,
+      /* cardAttr4,
       cardAttr5,
-      cardAttr6,
+      cardAttr6, */
       cardImage,
       cardRare,
       cardTrunfo,
@@ -61,9 +105,9 @@ class App extends React.Component {
           cardAttr1={ cardAttr1 }
           cardAttr2={ cardAttr2 }
           cardAttr3={ cardAttr3 }
-          cardAttr4={ cardAttr4 }
+          /* cardAttr4={ cardAttr4 }
           cardAttr5={ cardAttr5 }
-          cardAttr6={ cardAttr6 }
+          cardAttr6={ cardAttr6 } */
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
@@ -79,9 +123,9 @@ class App extends React.Component {
           cardAttr1={ cardAttr1 }
           cardAttr2={ cardAttr2 }
           cardAttr3={ cardAttr3 }
-          cardAttr4={ cardAttr4 }
+          /* cardAttr4={ cardAttr4 }
           cardAttr5={ cardAttr5 }
-          cardAttr6={ cardAttr6 }
+          cardAttr6={ cardAttr6 } */
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }

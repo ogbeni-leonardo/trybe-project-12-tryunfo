@@ -6,4 +6,10 @@
   box-sizing: border-box;
   outline: none;
   font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+
+body {
+  background-color: #FAFAFA;
 }

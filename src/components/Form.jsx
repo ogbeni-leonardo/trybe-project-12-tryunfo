@@ -11,9 +11,9 @@ export default class Form extends Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      cardAttr4,
+      /* cardAttr4,
       cardAttr5,
-      cardAttr6,
+      cardAttr6, */
       cardImage,
       cardRare,
       cardTrunfo,
@@ -86,7 +86,7 @@ export default class Form extends Component {
           />
         </label>
 
-        <label htmlFor="durability">
+        {/* <label htmlFor="durability">
           Resistência:
           <input
             type="number"
@@ -120,7 +120,7 @@ export default class Form extends Component {
             value={ cardAttr6 }
             onChange={ onInputChange }
           />
-        </label>
+        </label> */}
 
         <label htmlFor="image">
           URL da imagem:
@@ -180,9 +180,9 @@ Form.propTypes = {
   cardAttr1: PropTypes.string.isRequired,
   cardAttr2: PropTypes.string.isRequired,
   cardAttr3: PropTypes.string.isRequired,
-  cardAttr4: PropTypes.string.isRequired,
+  /* cardAttr4: PropTypes.string.isRequired,
   cardAttr5: PropTypes.string.isRequired,
-  cardAttr6: PropTypes.string.isRequired,
+  cardAttr6: PropTypes.string.isRequired, */
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
