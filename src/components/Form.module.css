@@ -1,0 +1,19 @@
+label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  row-gap: 10px;
+}
+
+input, select {
+  padding: 6px;
+}
+
+label:last-of-type {
+  column-gap: 10px;
+  flex-direction: row;
+}
+
+button {
+  padding: 10px;
+}
