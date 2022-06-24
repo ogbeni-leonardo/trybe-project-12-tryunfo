@@ -31,6 +31,7 @@ export default class Form extends Component {
           <input
             type="text"
             id="name"
+            name="cardName"
             data-testid="name-input"
             value={ cardName }
             onChange={ onInputChange }
@@ -41,6 +42,7 @@ export default class Form extends Component {
           Descrição:
           <textarea
             data-testid="description-input"
+            name="cardDescription"
             value={ cardDescription }
             onChange={ onInputChange }
           >
@@ -54,6 +56,7 @@ export default class Form extends Component {
             type="number"
             id="intelligence"
             data-testid="attr1-input"
+            name="cardAttr1"
             value={ cardAttr1 }
             onChange={ onInputChange }
           />
@@ -65,6 +68,7 @@ export default class Form extends Component {
             type="number"
             id="strength"
             data-testid="attr2-input"
+            name="cardAttr2"
             value={ cardAttr2 }
             onChange={ onInputChange }
           />
@@ -76,6 +80,7 @@ export default class Form extends Component {
             type="number"
             id="speed"
             data-testid="attr3-input"
+            name="cardAttr3"
             value={ cardAttr3 }
             onChange={ onInputChange }
           />
@@ -87,6 +92,7 @@ export default class Form extends Component {
             type="number"
             id="durability"
             data-testid="attr4-input"
+            name="cardAttr4"
             value={ cardAttr4 }
             onChange={ onInputChange }
           />
@@ -98,6 +104,7 @@ export default class Form extends Component {
             type="number"
             id="power"
             data-testid="attr5-input"
+            name="cardAttr5"
             value={ cardAttr5 }
             onChange={ onInputChange }
           />
@@ -109,6 +116,7 @@ export default class Form extends Component {
             type="number"
             id="combat"
             data-testid="attr6-input"
+            name="cardAttr6"
             value={ cardAttr6 }
             onChange={ onInputChange }
           />
@@ -120,6 +128,7 @@ export default class Form extends Component {
             type="text"
             id="image"
             data-testid="image-input"
+            name="cardImage"
             value={ cardImage }
             onChange={ onInputChange }
           />
@@ -129,6 +138,7 @@ export default class Form extends Component {
           <select
             id="type"
             data-testid="rare-input"
+            name="cardRare"
             value={ cardRare }
             onChange={ onInputChange }
           >
@@ -143,6 +153,7 @@ export default class Form extends Component {
             type="checkbox"
             id="trunfo"
             data-testid="trunfo-input"
+            name="cardTrunfo"
             checked={ cardTrunfo }
             onChange={ onInputChange }
             aplicar={ hasTrunfo.toString() }

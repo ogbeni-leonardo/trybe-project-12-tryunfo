@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import styles from './Card.module.css';
+
 export default class Card extends Component {
   render() {
     const {
@@ -18,7 +20,7 @@ export default class Card extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className={ styles.card }>
         <h1 data-testid="name-card">{cardName}</h1>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <p data-testid="description-card">{cardDescription}</p>
