@@ -10,6 +10,7 @@ input, select {
 }
 
 label:last-of-type {
+  align-items: center;
   column-gap: 10px;
   flex-direction: row;
 }
