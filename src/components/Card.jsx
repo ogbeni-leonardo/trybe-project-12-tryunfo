@@ -22,7 +22,6 @@ export default class Card extends Component {
         <h1 data-testid="name-card">{cardName}</h1>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <p data-testid="description-card">{cardDescription}</p>
-
         <p data-testid="attr1-card">{cardAttr1}</p>
         <p data-testid="attr2-card">{cardAttr2}</p>
         <p data-testid="attr3-card">{cardAttr3}</p>
@@ -30,7 +29,7 @@ export default class Card extends Component {
         <p data-testid="attr5-card">{cardAttr5}</p>
         <p data-testid="attr6-card">{cardAttr6}</p>
         <p data-testid="rare-card">{cardRare}</p>
-        { cardTrunfo && (<p data-testid="trunfo-card">{cardTrunfo}</p>) }
+        { cardTrunfo && (<p data-testid="trunfo-card">Super Trunfo</p>) }
       </div>
     );
   }
