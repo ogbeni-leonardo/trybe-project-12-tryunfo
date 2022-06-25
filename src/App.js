@@ -9,21 +9,23 @@ class App extends React.Component {
     super();
 
     this.state = {
-      cardName: '',
-      cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
-      /* cardAttr4: '',
-      cardAttr5: '',
-      cardAttr6: '', */
-      cardImage: '',
-      cardRare: '',
-      cardTrunfo: false,
-      hasTrunfo: false,
-      isSaveButtonDisabled: true,
+      ...this.initialState(),
+      allSavedCards: [],
     };
   }
+
+  initialState = () => ({
+    cardName: '',
+    cardDescription: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
+    cardImage: '',
+    cardRare: 'Normal',
+    cardTrunfo: false,
+    hasTrunfo: false,
+    isSaveButtonDisabled: true,
+  })
 
   onInputChange = ({ target }) => {
     const { name } = target;
@@ -41,9 +43,6 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      /* cardAttr4,
-      cardAttr5,
-      cardAttr6, */
       cardImage,
       cardRare,
     } = this.state;
@@ -63,9 +62,6 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      /* cardAttr4,
-      cardAttr5,
-      cardAttr6, */
     ].every((value) => {
       const valueToInt = parseInt(value, 10);
       return (valueToInt >= MIN_VALUE && valueToInt <= MAX_VALUE);
@@ -78,7 +74,33 @@ class App extends React.Component {
       && hasValidAttributes && hasValidTotal) });
   }
 
-  onSaveButtonClick = () => { console.log('Clique do botão capturado'); }
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+
+    this.setState((previous) => ({
+      allSavedCards: [...previous.allSavedCards, {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+      }],
+    }));
+
+    this.setState(this.initialState);
+  }
 
   render() {
     const {
@@ -87,9 +109,6 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      /* cardAttr4,
-      cardAttr5,
-      cardAttr6, */
       cardImage,
       cardRare,
       cardTrunfo,
@@ -105,9 +124,6 @@ class App extends React.Component {
           cardAttr1={ cardAttr1 }
           cardAttr2={ cardAttr2 }
           cardAttr3={ cardAttr3 }
-          /* cardAttr4={ cardAttr4 }
-          cardAttr5={ cardAttr5 }
-          cardAttr6={ cardAttr6 } */
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
@@ -123,9 +139,6 @@ class App extends React.Component {
           cardAttr1={ cardAttr1 }
           cardAttr2={ cardAttr2 }
           cardAttr3={ cardAttr3 }
-          /* cardAttr4={ cardAttr4 }
-          cardAttr5={ cardAttr5 }
-          cardAttr6={ cardAttr6 } */
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
