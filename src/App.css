@@ -1,5 +1,18 @@
 .newCard {
+  align-items: center;
+  background-color: #202020;
+  background-image: url('./cubic.png');
+  box-shadow: 0 0 15px rgba(0 0 0 / 30%);
   display: flex;
   gap: 10px;
-  margin-top: 20px;
+  justify-content: center;
+  padding: 30px 10px;
+}
+
+hr {
+  background-color: rgb(189, 189, 189);
+  border: 0;
+  height: 300px;
+  margin-inline: 40px;
+  width: 1px;
 }

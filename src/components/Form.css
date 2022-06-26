@@ -1,0 +1,200 @@
+.form {
+  align-items: stretch;
+  background-color: #2c3e50;
+  border: 0;
+  box-shadow: 0 0 15px rgba(0 0 0 / 30%);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  row-gap: 5px;
+  width: 320px;
+}
+
+.formTitle {
+  color: #2980b9;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+label {
+  font-size: 0.8rem;
+}
+
+.cardName {
+  align-items: center;
+  display: flex;
+}
+
+.icon {
+  color: whitesmoke;
+  height: 28px;
+  padding: 4px;
+  width: 28px;
+}
+
+.nameIcon {
+  background-color: #34495e;
+}
+
+.cardName input {
+  border: 1px solid #34495e;
+  border-left: 0;
+  flex-grow: 1;
+  height: 28px;
+  padding: 0 10px;
+}
+
+.addImage {
+  align-items: center;
+  display: flex;
+}
+
+.imageIcon {
+  background-color: #2980b9;
+}
+
+.addImage input {
+  border: 1px solid #2980b9;
+  border-left: 0;
+  flex-grow: 1;
+  height: 28px;
+  padding: 0 10px;
+}
+
+.addAttribute {
+  align-items: center;
+  background-color: #e0e0e0;
+  column-gap: 5px;
+  display: flex;
+  width: 100%;
+}
+
+.addAttribute span {
+  color: whitesmoke;
+  flex-grow: 1;
+}
+
+.addAttribute input {
+  height: 28px;
+  text-align: center;
+  width: 60px;
+}
+
+.powerIcon {
+  background-color: #bf360c;
+}
+
+.addPower span {
+  color: #bf360c;
+}
+
+.addPower input {
+  border: 1px solid #e0e0e0;
+}
+
+.addCombat span {
+  color: #b71c1c;
+}
+
+.combatIcon {
+  background-color: #b71c1c;
+}
+
+.addCombat input {
+  border: 1px solid #e0e0e0;
+}
+
+.addDurability span {
+  color: #004d40;
+}
+
+.durabilityIcon {
+  background-color: #004d40;
+}
+
+.addDurability input {
+  border: 1px solid #e0e0e0;
+}
+
+.cardType {
+  align-items: center;
+  background-color: #e0e0e0;
+  display: flex;
+  padding-left: 5px;
+}
+
+.cardType span {
+  flex-grow: 1;
+  font-weight: 700;
+}
+
+.cardType select {
+  background-color: #2980b9;
+  border: 0;
+  color: whitesmoke;
+  cursor: pointer;
+  height: 28px;
+  padding-inline: 10px;
+  width: 100px;
+}
+
+.cardType option {
+  background-color: #e0e0e0;
+  color: #212121;
+}
+
+.descriptionArea {
+  background-color: #34495e;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+}
+
+.descriptionArea span {
+  background-color: #e0e0e0;
+  font-weight: 700;
+  padding-block: 8px;
+  padding-left: 5px;
+}
+
+.descriptionArea textarea {
+  border: 0;
+  height: 70px;
+  padding: 6px;
+  resize: none;
+}
+
+.trunfo {
+  align-items: center;
+  color: whitesmoke;
+  column-gap: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  margin-block: 10px;
+}
+
+.trunfo input {
+  width: auto;
+}
+
+.formButton {
+  align-self: stretch;
+  background-color: #2980b9;
+  border: 0;
+  color: whitesmoke;
+  cursor: pointer;
+  opacity: 0.8;
+  padding: 10px;
+}
+
+.formButton:disabled {
+  background-color: #eee;
+  color: #212121;
+}
+
+.formButton:hover {
+  opacity: 1;
+}

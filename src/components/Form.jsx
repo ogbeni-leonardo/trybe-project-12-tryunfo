@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaSuperpowers } from 'react-icons/fa';
+import { GiSwordsPower, GiNinjaHeroicStance } from 'react-icons/gi';
+import { RiImageAddLine } from 'react-icons/ri';
+import { BiRename } from 'react-icons/bi';
 
-import './Form.module.css';
+import './Form.css';
 
 export default class Form extends Component {
   render() {
@@ -21,81 +25,81 @@ export default class Form extends Component {
     } = this.props;
 
     return (
-      <form>
-        <h1>Adicione uma nova carta</h1>
-        <label htmlFor="name">
-          Nome da carta:
+      <form className="form">
+        <h1 className="formTitle">Crie uma nova carta</h1>
+        <label htmlFor="name" className="cardName">
+          <BiRename className="icon nameIcon" />
           <input
             type="text"
             id="name"
             name="cardName"
             data-testid="name-input"
+            placeholder="Digite o nome da carta"
             value={ cardName }
             onChange={ onInputChange }
           />
         </label>
 
-        <label htmlFor="description">
-          Descrição:
-          <textarea
-            data-testid="description-input"
-            name="cardDescription"
-            value={ cardDescription }
-            onChange={ onInputChange }
-          >
-            Nada ainda...
-          </textarea>
-        </label>
-
-        <label htmlFor="intelligence">
-          Inteligência:
-          <input
-            type="number"
-            id="intelligence"
-            data-testid="attr1-input"
-            name="cardAttr1"
-            value={ cardAttr1 }
-            onChange={ onInputChange }
-          />
-        </label>
-
-        <label htmlFor="strength">
-          Força:
-          <input
-            type="number"
-            id="strength"
-            data-testid="attr2-input"
-            name="cardAttr2"
-            value={ cardAttr2 }
-            onChange={ onInputChange }
-          />
-        </label>
-
-        <label htmlFor="speed">
-          Velocidade:
-          <input
-            type="number"
-            id="speed"
-            data-testid="attr3-input"
-            name="cardAttr3"
-            value={ cardAttr3 }
-            onChange={ onInputChange }
-          />
-        </label>
-
-        <label htmlFor="image">
-          URL da imagem:
+        <label htmlFor="image" className="addImage">
+          <RiImageAddLine className="icon imageIcon" />
           <input
             type="text"
             id="image"
             data-testid="image-input"
             name="cardImage"
+            placeholder="URL da imagem..."
             value={ cardImage }
             onChange={ onInputChange }
           />
         </label>
 
-        <label htmlFor="type">
+        <label htmlFor="power" className="addAttribute addPower">
+          <FaSuperpowers className="icon powerIcon" />
+          <span>Poder:</span>
+          <input
+            type="number"
+            id="power"
+            data-testid="attr1-input"
+            name="cardAttr1"
+            min={ 0 }
+            max={ 90 }
+            value={ cardAttr1 }
+            onChange={ onInputChange }
+          />
+        </label>
+
+        <label htmlFor="combat" className="addAttribute addCombat">
+          <GiSwordsPower className="icon combatIcon" />
+          <span>Combate:</span>
+          <input
+            type="number"
+            id="combat"
+            data-testid="attr2-input"
+            name="cardAttr2"
+            min={ 0 }
+            max={ 90 }
+            value={ cardAttr2 }
+            onChange={ onInputChange }
+          />
+        </label>
+
+        <label htmlFor="durability" className="addAttribute addDurability">
+          <GiNinjaHeroicStance className="icon durabilityIcon" />
+          <span>Resistência:</span>
+          <input
+            type="number"
+            id="durability"
+            data-testid="attr3-input"
+            name="cardAttr3"
+            min={ 0 }
+            max={ 90 }
+            value={ cardAttr3 }
+            onChange={ onInputChange }
+          />
+        </label>
+
+        <label htmlFor="type" className="cardType">
+          <span>Tipo da carta:</span>
           <select
             id="type"
             data-testid="rare-input"
@@ -108,8 +112,22 @@ export default class Form extends Component {
             <option value="muito raro">Muito raro</option>
           </select>
         </label>
+
+        <label htmlFor="description" className="descriptionArea">
+          <span>Descrição:</span>
+          <textarea
+            data-testid="description-input"
+            name="cardDescription"
+            placeholder="Dê uma descrição a este personagem..."
+            value={ cardDescription }
+            onChange={ onInputChange }
+          >
+            Nada ainda...
+          </textarea>
+        </label>
+
         { !hasTrunfo ? (
-          <label htmlFor="trunfo">
+          <label htmlFor="trunfo" className="trunfo">
             <input
               type="checkbox"
               id="trunfo"
@@ -127,6 +145,7 @@ export default class Form extends Component {
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
+          className="formButton"
         >
           Salvar
         </button>

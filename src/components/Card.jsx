@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './Card.module.css';
+import './Card.css';
 
 export default class Card extends Component {
   render() {
@@ -11,54 +11,70 @@ export default class Card extends Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      /* cardAttr4,
-      cardAttr5,
-      cardAttr6, */
       cardImage,
       cardRare,
       cardTrunfo,
     } = this.props;
 
+    let cardType;
+    if (cardRare === 'normal') cardType = 'normal';
+    else if (cardRare === 'raro') cardType = 'rare';
+    else cardType = 'legend';
+
     return (
-      <div className={ styles.card }>
-        <h1 data-testid="name-card" className={ styles.name }>{cardName}</h1>
+      <div className="card">
+        <div className={ `cardContent ${cardType}` }>
+          <h1 data-testid="rare-card" className="type">{cardRare}</h1>
 
-        <div
-          className={ styles.imageContainer }
-          style={ { backgroundImage: `url("${cardImage}")` } }
-        >
-          <img
-            data-testid="image-card"
-            src={ cardImage }
-            alt={ cardName }
-            className={ styles.image }
-          />
-        </div>
+          <div
+            className="imageContainer"
+            style={ { backgroundImage: `url("${cardImage}")` } }
+          >
+            <img
+              data-testid="image-card"
+              src={ cardImage }
+              alt={ cardName }
+              className="image"
+            />
+            <h1 data-testid="name-card" className="name">{cardName}</h1>
+            { cardTrunfo
+              && (<p data-testid="trunfo-card" className="trunfoCard">Super Trunfo</p>) }
+          </div>
 
-        <div className={ styles.infos }>
-          <p data-testid="description-card">
-            <strong>Descrição: </strong>
-            {cardDescription}
-          </p>
+          <div className="descriptionContainer">
+            <p
+              data-testid="description-card"
+              className="description"
+            >
+              {cardDescription}
+            </p>
+          </div>
 
-          <p data-testid="attr1-card">
-            <strong>Inteligência: </strong>
-            {cardAttr1}
-          </p>
+          <div className="attributes">
+            <p
+              data-testid="attr1-card"
+              className="attribute"
+            >
+              <strong>Poder: </strong>
+              {cardAttr1}
+            </p>
 
-          <p data-testid="attr2-card">
-            <strong>Força: </strong>
-            {cardAttr2}
-          </p>
+            <p
+              data-testid="attr2-card"
+              className="attribute"
+            >
+              <strong>Combate: </strong>
+              {cardAttr2}
+            </p>
 
-          <p data-testid="attr3-card">
-            <strong>Velocidade: </strong>
-            {cardAttr3}
-          </p>
-
-          <p data-testid="rare-card">{cardRare}</p>
-
-          { cardTrunfo && (<p data-testid="trunfo-card">Super Trunfo</p>) }
+            <p
+              data-testid="attr3-card"
+              className="attribute"
+            >
+              <strong>Resistência: </strong>
+              {cardAttr3}
+            </p>
+          </div>
         </div>
       </div>
     );
