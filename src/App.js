@@ -16,6 +16,7 @@ class App extends React.Component {
       hasTrunfo: false,
       search: '',
       allCards: { saved: [], default: [...defaultCards] },
+      rareFilter: 'todas',
     };
   }
 
@@ -135,6 +136,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       search,
       allCards,
+      rareFilter,
     } = this.state;
 
     return (
@@ -154,9 +156,7 @@ class App extends React.Component {
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
           />
-
           <hr />
-
           <Card
             cardName={ cardName }
             cardDescription={ cardDescription }
@@ -182,15 +182,53 @@ class App extends React.Component {
             />
             <BiSearchAlt className="searchIcon" />
           </div>
+          <div className="filters">
+            <select
+              data-testid="rare-filter"
+              value={ rareFilter }
+              onChange={ ({ target }) => this.setState({ rareFilter: target.value }) }
+            >
+              <option value="normal">Normal</option>
+              <option value="raro">Raro</option>
+              <option value="muito raro">Muito raro</option>
+              <option value="todas">Todas</option>
+            </select>
+          </div>
         </div>
 
         <div className="savedCards">
+          { allCards.saved
+            .filter((card) => (card.cardName.toLowerCase()
+              .includes(search.toLowerCase())))
+            .filter((card) => (card.cardRare === rareFilter || rareFilter === 'todas'))
+            .map((card, index) => (
+              <div key={ index }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  type="button"
+                  data-testid="delete-button"
+                  onClick={ () => this.removeCard(card.cardName) }
+                >
+                  Excluir
+                </button>
+              </div>)) }
 
-          { allCards.saved.filter((card) => (
-            card.cardName.toLowerCase().includes(search.toLowerCase())
-          )).map((card, index) => (
-            <div key={ index }>
+          { allCards.default
+            .filter((card) => (card.cardName.toLowerCase()
+              .includes(search.toLowerCase())))
+            .filter((card) => (card.cardRare === rareFilter || rareFilter === 'todas'))
+            .map((card, index) => (
               <Card
+                key={ index }
                 cardName={ card.cardName }
                 cardDescription={ card.cardDescription }
                 cardAttr1={ card.cardAttr1 }
@@ -199,32 +237,7 @@ class App extends React.Component {
                 cardImage={ card.cardImage }
                 cardRare={ card.cardRare }
                 cardTrunfo={ card.cardTrunfo }
-              />
-              <button
-                type="button"
-                data-testid="delete-button"
-                onClick={ () => this.removeCard(card.cardName) }
-              >
-                Excluir
-              </button>
-            </div>
-          ))}
-
-          { allCards.default.filter((card) => (
-            card.cardName.toLowerCase().includes(search.toLowerCase())
-          )).map((card, index) => (
-            <Card
-              key={ index }
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
-          ))}
+              />)) }
         </div>
       </div>
     );
