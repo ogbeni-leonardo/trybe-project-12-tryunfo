@@ -180,6 +180,13 @@ label {
   width: auto;
 }
 
+.hasTrunfo {
+  color: whitesmoke;
+  font-size: 0.8rem;
+  margin-block: 10px;
+  text-align: center;
+}
+
 .formButton {
   align-self: stretch;
   background-color: #2980b9;

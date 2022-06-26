@@ -51,28 +51,19 @@ export default class Card extends Component {
           </div>
 
           <div className="attributes">
-            <p
-              data-testid="attr1-card"
-              className="attribute"
-            >
+            <p className="attribute">
               <strong>Poder: </strong>
-              {cardAttr1}
+              <span data-testid="attr1-card">{cardAttr1}</span>
             </p>
 
-            <p
-              data-testid="attr2-card"
-              className="attribute"
-            >
+            <p className="attribute">
               <strong>Combate: </strong>
-              {cardAttr2}
+              <span data-testid="attr2-card">{cardAttr2}</span>
             </p>
 
-            <p
-              data-testid="attr3-card"
-              className="attribute"
-            >
+            <p className="attribute">
               <strong>Resistência: </strong>
-              {cardAttr3}
+              <span data-testid="attr3-card">{cardAttr3}</span>
             </p>
           </div>
         </div>

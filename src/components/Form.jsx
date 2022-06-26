@@ -61,8 +61,6 @@ export default class Form extends Component {
             id="power"
             data-testid="attr1-input"
             name="cardAttr1"
-            min={ 0 }
-            max={ 90 }
             value={ cardAttr1 }
             onChange={ onInputChange }
           />
@@ -76,8 +74,6 @@ export default class Form extends Component {
             id="combat"
             data-testid="attr2-input"
             name="cardAttr2"
-            min={ 0 }
-            max={ 90 }
             value={ cardAttr2 }
             onChange={ onInputChange }
           />
@@ -91,8 +87,6 @@ export default class Form extends Component {
             id="durability"
             data-testid="attr3-input"
             name="cardAttr3"
-            min={ 0 }
-            max={ 90 }
             value={ cardAttr3 }
             onChange={ onInputChange }
           />
@@ -138,7 +132,7 @@ export default class Form extends Component {
             />
             Esta carta é um super trunfo.
           </label>
-        ) : <p>Você já tem um Super Trunfo em seu baralho.</p>}
+        ) : <p className="hasTrunfo">Você já tem um Super Trunfo em seu baralho.</p>}
 
         <button
           type="button"

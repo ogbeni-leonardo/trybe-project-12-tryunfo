@@ -1,8 +1,11 @@
 import React from 'react';
-import './App.css';
+import { BiSearchAlt } from 'react-icons/bi';
 
+import './App.css';
 import Form from './components/Form';
 import Card from './components/Card';
+
+import defaultCards from './data';
 
 class App extends React.Component {
   constructor() {
@@ -11,7 +14,8 @@ class App extends React.Component {
     this.state = {
       ...this.initialState(),
       hasTrunfo: false,
-      allSavedCards: [],
+      search: '',
+      allCards: { saved: [], default: [...defaultCards] },
     };
   }
 
@@ -31,9 +35,7 @@ class App extends React.Component {
     const { name } = target;
     const value = (target.type !== 'checkbox') ? target.value : target.checked;
 
-    this.setState({
-      [name]: value,
-    }, () => this.validateEntries());
+    this.setState({ [name]: value }, () => this.validateEntries());
   }
 
   validateEntries = () => {
@@ -74,17 +76,15 @@ class App extends React.Component {
       && hasValidAttributes && hasValidTotal) });
   }
 
-  onSaveButtonClick = (event) => {
-    event.preventDefault();
-
+  onSaveButtonClick = () => {
     const {
       cardName,
-      cardDescription,
+      cardImage,
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      cardImage,
       cardRare,
+      cardDescription,
       cardTrunfo,
       hasTrunfo,
     } = this.state;
@@ -92,7 +92,7 @@ class App extends React.Component {
     if (cardTrunfo) this.setState({ hasTrunfo: cardTrunfo });
 
     this.setState((previous) => ({
-      allSavedCards: [...previous.allSavedCards, {
+      allCards: { saved: [...previous.allCards.saved, {
         cardName,
         cardDescription,
         cardAttr1,
@@ -103,6 +103,7 @@ class App extends React.Component {
         cardTrunfo,
         hasTrunfo,
       }],
+      default: [...previous.allCards.default] },
     }));
 
     this.setState(this.initialState);
@@ -110,11 +111,13 @@ class App extends React.Component {
 
   removeCard = (name) => {
     this.setState((previous) => ({
-      allSavedCards: previous.allSavedCards.filter(({ cardName }) => cardName !== name),
-    }));
+      allCards: {
+        saved: [...previous.allCards.saved.filter(({ cardName }) => (cardName !== name))],
+        default: [...previous.allCards.default],
+      } }));
 
     this.setState((previous) => ({
-      hasTrunfo: previous.allSavedCards.some(({ hasTrunfo }) => hasTrunfo),
+      hasTrunfo: previous.allCards.saved.some(({ hasTrunfo }) => hasTrunfo),
     }));
   }
 
@@ -130,7 +133,8 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
-      allSavedCards,
+      search,
+      allCards,
     } = this.state;
 
     return (
@@ -165,9 +169,26 @@ class App extends React.Component {
           />
         </div>
 
+        <div className="searchArea">
+          <h1 className="searchTitle">Filtro de Pesquisa</h1>
+          <div className="inputArea">
+            <input
+              type="text"
+              data-testid="name-filter"
+              className="search"
+              placeholder="Digite o nome da carta"
+              value={ search }
+              onChange={ ({ target }) => this.setState({ search: target.value }) }
+            />
+            <BiSearchAlt className="searchIcon" />
+          </div>
+        </div>
+
         <div className="savedCards">
 
-          { allSavedCards.map((card, index) => (
+          { allCards.saved.filter((card) => (
+            card.cardName.toLowerCase().includes(search.toLowerCase())
+          )).map((card, index) => (
             <div key={ index }>
               <Card
                 cardName={ card.cardName }
@@ -187,6 +208,22 @@ class App extends React.Component {
                 Excluir
               </button>
             </div>
+          ))}
+
+          { allCards.default.filter((card) => (
+            card.cardName.toLowerCase().includes(search.toLowerCase())
+          )).map((card, index) => (
+            <Card
+              key={ index }
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+            />
           ))}
         </div>
       </div>

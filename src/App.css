@@ -16,3 +16,39 @@ hr {
   margin-inline: 40px;
   width: 1px;
 }
+
+.searchArea {
+  margin-inline: auto;
+  margin-top: 40px;
+  position: relative;
+  width: fit-content;
+}
+
+.searchTitle {
+  color: #2980b9;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.inputArea {
+  display: flex;
+}
+
+.search {
+  border: 1px solid #e0e0e0;
+  height: 30px;
+  padding: 0 10px;
+  width: 400px;
+}
+
+.search:focus {
+  border: 1px solid #2980b9;
+}
+
+.searchIcon {
+  background-color: #2980b9;
+  color: whitesmoke;
+  height: 30px;
+  padding: 5px;
+  width: 50px;
+}
