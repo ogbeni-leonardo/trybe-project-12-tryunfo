@@ -1,9 +1,9 @@
 import React from 'react';
-import { BiSearchAlt } from 'react-icons/bi';
 
 import './App.css';
 import Form from './components/Form';
 import Card from './components/Card';
+import SearchArea from './components/SearchArea';
 
 import defaultCards from './data';
 
@@ -14,9 +14,10 @@ class App extends React.Component {
     this.state = {
       ...this.initialState(),
       hasTrunfo: false,
-      search: '',
       allCards: { saved: [], default: [...defaultCards] },
+      searchFilter: '',
       rareFilter: 'todas',
+      trunfoFilter: false,
     };
   }
 
@@ -37,6 +38,39 @@ class App extends React.Component {
     const value = (target.type !== 'checkbox') ? target.value : target.checked;
 
     this.setState({ [name]: value }, () => this.validateEntries());
+  }
+
+  onSaveButtonClick = () => {
+    const {
+      cardName,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardDescription,
+      cardTrunfo,
+      hasTrunfo,
+    } = this.state;
+
+    if (cardTrunfo) this.setState({ hasTrunfo: true });
+
+    this.setState((previous) => ({
+      allCards: { saved: [...previous.allCards.saved, {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+        hasTrunfo,
+      }],
+      default: [...previous.allCards.default] },
+    }));
+
+    this.setState(this.initialState);
   }
 
   validateEntries = () => {
@@ -77,39 +111,6 @@ class App extends React.Component {
       && hasValidAttributes && hasValidTotal) });
   }
 
-  onSaveButtonClick = () => {
-    const {
-      cardName,
-      cardImage,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardRare,
-      cardDescription,
-      cardTrunfo,
-      hasTrunfo,
-    } = this.state;
-
-    if (cardTrunfo) this.setState({ hasTrunfo: cardTrunfo });
-
-    this.setState((previous) => ({
-      allCards: { saved: [...previous.allCards.saved, {
-        cardName,
-        cardDescription,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-        cardImage,
-        cardRare,
-        cardTrunfo,
-        hasTrunfo,
-      }],
-      default: [...previous.allCards.default] },
-    }));
-
-    this.setState(this.initialState);
-  }
-
   removeCard = (name) => {
     this.setState((previous) => ({
       allCards: {
@@ -134,9 +135,10 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
-      search,
       allCards,
+      searchFilter,
       rareFilter,
+      trunfoFilter,
     } = this.state;
 
     return (
@@ -169,38 +171,21 @@ class App extends React.Component {
           />
         </div>
 
-        <div className="searchArea">
-          <h1 className="searchTitle">Filtro de Pesquisa</h1>
-          <div className="inputArea">
-            <input
-              type="text"
-              data-testid="name-filter"
-              className="search"
-              placeholder="Digite o nome da carta"
-              value={ search }
-              onChange={ ({ target }) => this.setState({ search: target.value }) }
-            />
-            <BiSearchAlt className="searchIcon" />
-          </div>
-          <div className="filters">
-            <select
-              data-testid="rare-filter"
-              value={ rareFilter }
-              onChange={ ({ target }) => this.setState({ rareFilter: target.value }) }
-            >
-              <option value="normal">Normal</option>
-              <option value="raro">Raro</option>
-              <option value="muito raro">Muito raro</option>
-              <option value="todas">Todas</option>
-            </select>
-          </div>
-        </div>
+        <SearchArea
+          searchFilter={ searchFilter }
+          rareFilter={ rareFilter }
+          trunfoFilter={ trunfoFilter }
+          onInputChange={ this.onInputChange }
+        />
 
         <div className="savedCards">
           { allCards.saved
-            .filter((card) => (card.cardName.toLowerCase()
-              .includes(search.toLowerCase())))
-            .filter((card) => (card.cardRare === rareFilter || rareFilter === 'todas'))
+            .filter((card) => ((!trunfoFilter && card.cardName.toLowerCase()
+              .includes(searchFilter.toLowerCase())) || trunfoFilter))
+            .filter((card) => (
+              ((card.cardRare === rareFilter || rareFilter === 'todas') && !trunfoFilter)
+              || trunfoFilter))
+            .filter((card) => ((trunfoFilter && card.cardTrunfo) || !trunfoFilter))
             .map((card, index) => (
               <div key={ index }>
                 <Card
@@ -224,7 +209,7 @@ class App extends React.Component {
 
           { allCards.default
             .filter((card) => (card.cardName.toLowerCase()
-              .includes(search.toLowerCase())))
+              .includes(searchFilter.toLowerCase())))
             .filter((card) => (card.cardRare === rareFilter || rareFilter === 'todas'))
             .map((card, index) => (
               <Card

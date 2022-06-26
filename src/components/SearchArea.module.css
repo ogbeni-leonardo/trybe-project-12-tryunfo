@@ -1,0 +1,34 @@
+.searchArea {
+  align-items: center;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 50px;
+}
+
+.searchTitle {
+  color: #2980b9;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.inputArea {
+  align-items: center;
+  display: flex;
+}
+
+.inputSearch {
+  border: 1px solid #e0e0e0;
+  height: 35px;
+  padding-inline: 10px;
+  width: 400px;
+}
+
+.searchIcon {
+  background-color: #2980b9;
+  color: whitesmoke;
+  height: 35px;
+  padding: 5px;
+  width: 55px;
+}
