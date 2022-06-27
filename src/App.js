@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './App.css';
+import styles from './App.module.css';
 import Form from './components/Form';
 import Card from './components/Card';
 import SearchArea from './components/SearchArea';
@@ -126,12 +126,12 @@ class App extends React.Component {
   render() {
     const {
       cardName,
-      cardDescription,
+      cardImage,
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      cardImage,
       cardRare,
+      cardDescription,
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
@@ -142,16 +142,16 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div className="content">
-        <div className="newCard">
+      <div className={ styles.content }>
+        <section className={ styles.newCardArea }>
           <Form
             cardName={ cardName }
-            cardDescription={ cardDescription }
+            cardImage={ cardImage }
             cardAttr1={ cardAttr1 }
             cardAttr2={ cardAttr2 }
             cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
             cardRare={ cardRare }
+            cardDescription={ cardDescription }
             cardTrunfo={ cardTrunfo }
             hasTrunfo={ hasTrunfo }
             isSaveButtonDisabled={ isSaveButtonDisabled }
@@ -161,15 +161,15 @@ class App extends React.Component {
           <hr />
           <Card
             cardName={ cardName }
-            cardDescription={ cardDescription }
+            cardImage={ cardImage }
             cardAttr1={ cardAttr1 }
             cardAttr2={ cardAttr2 }
             cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
             cardRare={ cardRare }
+            cardDescription={ cardDescription }
             cardTrunfo={ cardTrunfo }
           />
-        </div>
+        </section>
 
         <SearchArea
           searchFilter={ searchFilter }
@@ -178,7 +178,7 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
         />
 
-        <div className="savedCards">
+        <div className={ styles.cards }>
           { allCards.saved
             .filter((card) => ((!trunfoFilter && card.cardName.toLowerCase()
               .includes(searchFilter.toLowerCase())) || trunfoFilter))
@@ -187,7 +187,7 @@ class App extends React.Component {
               || trunfoFilter))
             .filter((card) => ((trunfoFilter && card.cardTrunfo) || !trunfoFilter))
             .map((card, index) => (
-              <div key={ index }>
+              <div key={ index } className={ styles.savedCards }>
                 <Card
                   cardName={ card.cardName }
                   cardDescription={ card.cardDescription }
@@ -199,18 +199,22 @@ class App extends React.Component {
                   cardTrunfo={ card.cardTrunfo }
                 />
                 <button
-                  type="button"
+                  className={ styles.deleteButton }
                   data-testid="delete-button"
                   onClick={ () => this.removeCard(card.cardName) }
+                  type="button"
                 >
                   Excluir
                 </button>
               </div>)) }
 
           { allCards.default
-            .filter((card) => (card.cardName.toLowerCase()
-              .includes(searchFilter.toLowerCase())))
-            .filter((card) => (card.cardRare === rareFilter || rareFilter === 'todas'))
+            .filter((card) => ((!trunfoFilter && card.cardName.toLowerCase()
+              .includes(searchFilter.toLowerCase())) || trunfoFilter))
+            .filter((card) => (
+              ((card.cardRare === rareFilter || rareFilter === 'todas') && !trunfoFilter)
+              || trunfoFilter))
+            .filter((card) => ((trunfoFilter && card.cardTrunfo) || !trunfoFilter))
             .map((card, index) => (
               <Card
                 key={ index }
@@ -224,6 +228,9 @@ class App extends React.Component {
                 cardTrunfo={ card.cardTrunfo }
               />)) }
         </div>
+        <footer className={ styles.footer }>
+          Projeto desenvolvido por Leonardo C Araújo &ndash; 26/06/2022.
+        </footer>
       </div>
     );
   }

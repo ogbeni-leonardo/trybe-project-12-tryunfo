@@ -34,8 +34,8 @@ export default class SearchArea extends Component {
     const { inputDisabled, selectDisabled } = this.state;
 
     return (
-      <div className={ styles.searchArea }>
-        <h1 className={ styles.searchTitle }>Filtro de Pesquisa</h1>
+      <section className={ styles.filtersArea }>
+        <h1 className={ styles.filtersTitle }>Filtro de Pesquisa</h1>
 
         <div className={ styles.inputArea }>
           <input
@@ -51,20 +51,25 @@ export default class SearchArea extends Component {
           <BiSearchAlt className={ styles.searchIcon } />
         </div>
 
-        <div className="filters">
-          <select
-            data-testid="rare-filter"
-            name="rareFilter"
-            value={ rareFilter }
-            onChange={ onInputChange }
-            disabled={ selectDisabled }
-          >
-            <option value="normal">Normal</option>
-            <option value="raro">Raro</option>
-            <option value="muito raro">Muito raro</option>
-            <option value="todas">Todas</option>
-          </select>
-          <label htmlFor="trunfoFilter">
+        <div className={ styles.optionsArea }>
+          <label htmlFor="cardType" className={ styles.selectLabel }>
+            Filtrar por tipo:
+            <select
+              data-testid="rare-filter"
+              disabled={ selectDisabled }
+              id="cardType"
+              name="rareFilter"
+              onChange={ onInputChange }
+              value={ rareFilter }
+            >
+              <option value="todas">Todas</option>
+              <option value="normal">Normal</option>
+              <option value="raro">Raro</option>
+              <option value="muito raro">Muito raro</option>
+            </select>
+          </label>
+
+          <label htmlFor="trunfoFilter" className={ styles.trunfoCheck }>
             <input
               data-testid="trunfo-filter"
               id="trunfoFilter"
@@ -76,7 +81,7 @@ export default class SearchArea extends Component {
             Super Trunfo
           </label>
         </div>
-      </div>
+      </section>
     );
   }
 }

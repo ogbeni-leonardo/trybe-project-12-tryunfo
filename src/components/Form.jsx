@@ -60,6 +60,8 @@ export default class Form extends Component {
             type="number"
             id="power"
             data-testid="attr1-input"
+            max={ 90 }
+            min={ 0 }
             name="cardAttr1"
             value={ cardAttr1 }
             onChange={ onInputChange }
@@ -73,6 +75,8 @@ export default class Form extends Component {
             type="number"
             id="combat"
             data-testid="attr2-input"
+            max={ 90 }
+            min={ 0 }
             name="cardAttr2"
             value={ cardAttr2 }
             onChange={ onInputChange }
@@ -86,6 +90,8 @@ export default class Form extends Component {
             type="number"
             id="durability"
             data-testid="attr3-input"
+            max={ 90 }
+            min={ 0 }
             name="cardAttr3"
             value={ cardAttr3 }
             onChange={ onInputChange }

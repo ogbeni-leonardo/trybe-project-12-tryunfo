@@ -1,13 +1,12 @@
-.searchArea {
+.filtersArea {
   align-items: center;
-  background-color: red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-block: 50px;
 }
 
-.searchTitle {
+.filtersTitle {
   color: #2980b9;
   font-size: 1.8rem;
   margin-bottom: 20px;
@@ -25,10 +24,42 @@
   width: 400px;
 }
 
+.inputSearch:focus {
+  border: 1px solid #2980b9;
+}
+
 .searchIcon {
   background-color: #2980b9;
   color: whitesmoke;
   height: 35px;
   padding: 5px;
   width: 55px;
+}
+
+.optionsArea {
+  align-items: center;
+  background-color: #eee;
+  column-gap: 10px;
+  display: flex;
+  margin-top: 5px;
+  padding: 5px 20px;
+}
+
+.selectLabel {
+  align-items: center;
+  column-gap: 5px;
+  display: flex;
+}
+
+.selectLabel select {
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.trunfoCheck {
+  align-items: center;
+  column-gap: 5px;
+  cursor: pointer;
+  display: flex;
 }

@@ -1,0 +1,68 @@
+.newCardArea {
+  align-items: center;
+  background-color: #202020;
+  background-image: url('./cubic.png');
+  box-shadow: 0 0 15px rgba(0 0 0 / 30%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 30px 10px;
+}
+
+hr {
+  background-color: rgb(189, 189, 189);
+  border: 0;
+  height: 300px;
+  margin-inline: 40px;
+  width: 1px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 40px;
+  padding-inline: 30px;
+}
+
+.savedCards {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  row-gap: 10px;
+}
+
+.deleteButton {
+  background-color: transparent;
+  border: 1px solid #2980b9;
+  box-shadow: 0 0 15px rgba(0 0 0 / 30%);
+  color: #2980b9;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.deleteButton:hover {
+  background-color: #2980b9;
+  color: whitesmoke;
+}
+
+.footer {
+  align-items: center;
+  background-color: #202020;
+  background-image: url('./cubic.png');
+  box-shadow: 0 0 15px rgba(0 0 0 / 30%);
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+  padding: 40px 10px;
+}
+
+@media screen and ( max-width : 750px ) {
+
+  hr {
+    display: none;
+  }
+}
