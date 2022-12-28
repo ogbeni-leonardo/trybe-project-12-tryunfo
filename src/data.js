@@ -1,4 +1,4 @@
-/* const NORMAL = 'normal';
+const NORMAL = 'normal';
 const RARE = 'raro';
 const LEGEND = 'muito raro';
 
@@ -92,8 +92,6 @@ const defaultCards = [
     cardTrunfo: false,
     hasTrunfo: false,
   },
-]; */
-
-const defaultCards = [];
+];
 
 export default defaultCards;

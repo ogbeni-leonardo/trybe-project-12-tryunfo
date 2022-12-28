@@ -1,13 +1,25 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Tryunfo
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Este projeto consiste em uma aplicação para criação de cartas com tema aleatório no estilo Super Trunfo. Inicialmente o tema escolhido para o desenvolvimento das cartas foi **Super (heróis-vilões)**.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+## Recursos
+
+- É possível criar novas cartas com personagens de sua preferência;
+- Escolher o nível de cada carta, optando entre: **normal**, **rara**, **lendária**;
+- Filtrar as cartas segundo seu nível, nome ou **Super Trunfo**;
+- Remover cartas do baralho.
+
+## Requisitos
+
+Para fazer uso desta aplicação, é necessário:
+
+- Ter um navegador web atualizado;
+- Ter o `nodejs (v16)` instalado na sua máquina.
+
+## Uso
+
+Para executar esta aplicação, siga os passos abaixo:
+
+- Clone o repositório;
+- Na pasta raiz, execute o comando `npm install` para a instalação das dependências;
+- Ao concluir o passo anterior, rode o comando `npm start`.
